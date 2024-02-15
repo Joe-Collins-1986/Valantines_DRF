@@ -1,9 +1,8 @@
-from django.db.models import Count
+
 from rest_framework import generics, filters
 from main.permissions import IsOwnerOrReadOnly
 from .models import Account
 from .serializers import AccountSerializer
-from django_filters.rest_framework import DjangoFilterBackend
 
 
 class AccountList(generics.ListAPIView):
@@ -23,7 +22,7 @@ class AccountList(generics.ListAPIView):
     ]
 
     search_fields = [
-        'profile_name',
+        'account_name',
     ]
 
 class AccountDetail(generics.RetrieveUpdateAPIView):
