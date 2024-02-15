@@ -34,7 +34,7 @@ JWT_AUTH_SAMESITE = 'None'
 
 # OVERWRITE USER SERIALIZER WITH PROFILE ID AND IMAGE URL
 REST_AUTH_SERIALIZERS = {
-    'USER_DETAILS_SERIALIZER': 'accounts.serializers.CurrentUserSerializer'
+    'USER_DETAILS_SERIALIZER': 'main.serializers.CurrentUserSerializer'
 }
 
 # DEV REST ENVIRONMENT
@@ -51,6 +51,7 @@ if 'DEV' not in os.environ:
 SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
+# DEBUG = 'DEV' in os.environ
 DEBUG = 'DEV' in os.environ
 
 ALLOWED_HOSTS = [
@@ -95,7 +96,6 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'allauth.account.middleware.AccountMiddleware', 
 ]
 
 CORS_ALLOW_CREDENTIALS = True
@@ -188,3 +188,5 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+ACCOUNT_EMAIL_VERIFICATION = 'none'
