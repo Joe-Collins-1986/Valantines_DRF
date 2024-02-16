@@ -84,6 +84,7 @@ INSTALLED_APPS = [
 
 
     'accounts',
+    'partnerprofile',
 ]
 
 SITE_ID = 1
