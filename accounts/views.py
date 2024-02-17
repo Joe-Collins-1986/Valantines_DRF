@@ -8,13 +8,12 @@ from .serializers import AccountSerializer
 class AccountList(generics.ListAPIView):
     """
     - List out all the accounts
-    - Profile created by user registration so no create
+    - Account created by user registration so no create
     account required
-    - Only allow CRUD on the user's own account
     """
     serializer_class = AccountSerializer
-    permission_classes = [IsOwnerDocsOnly]
     queryset = Account.objects.filter().order_by('-created_at')
+    
 
 class AccountDetail(generics.RetrieveUpdateAPIView):
     """
