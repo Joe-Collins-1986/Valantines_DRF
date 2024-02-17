@@ -15,7 +15,7 @@ class PartnerProfileSerializer(serializers.ModelSerializer):
 
     def get_is_account(self, obj):
         request = self.context['request']
-        return request.user == obj.account
+        return request.user == obj.owner
 
     class Meta:
         model = PartnerProfile
