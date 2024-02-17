@@ -1,6 +1,6 @@
 
-from rest_framework import generics, filters
-from main.permissions import IsOwnerOrReadOnly
+from rest_framework import generics
+from main.permissions import IsOwnerDocsOnly, IsOwnerOrReadOnly
 from .models import Account
 from .serializers import AccountSerializer
 
@@ -10,20 +10,11 @@ class AccountList(generics.ListAPIView):
     - List out all the accounts
     - Profile created by user registration so no create
     account required
-    - Accounts are not to be deleted unless User is
-    removed so no delete functionality required
-    - Due to no create, update, delete no permission class required
+    - Only allow CRUD on the user's own account
     """
     serializer_class = AccountSerializer
-    queryset = Account.objects.all().order_by('-created_at')
-
-    filter_backends = [
-        filters.SearchFilter,
-    ]
-
-    search_fields = [
-        'account_name',
-    ]
+    permission_classes = [IsOwnerDocsOnly]
+    queryset = Account.objects.filter().order_by('-created_at')
 
 class AccountDetail(generics.RetrieveUpdateAPIView):
     """
