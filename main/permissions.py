@@ -10,3 +10,9 @@ class IsOwnerOrReadOnly(permissions.BasePermission):
 class IsOwnerDocsOnly(permissions.BasePermission):
     def has_object_permission(self, request, view, obj):
         return obj.owner == request.user
+
+class IsAccountOrReadOnly(permissions.BasePermission):
+    def has_object_permission(self, request, view, obj):
+        if request.method in permissions.SAFE_METHODS:
+            return True
+        return obj.account.owner == request.user

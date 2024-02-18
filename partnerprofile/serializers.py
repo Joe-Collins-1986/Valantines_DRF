@@ -10,14 +10,21 @@ class PartnerProfileSerializer(serializers.ModelSerializer):
     Get function to set is_owner to true/false
     """
 
-    account = serializers.ReadOnlyField(source='account.username')
-    is_account = serializers.SerializerMethodField()
+    created_by = serializers.ReadOnlyField(source='account.account_name')
+    created_by_id = serializers.ReadOnlyField(source='account.id')
+    partner_id = serializers.ReadOnlyField(source='id')
 
-    def get_is_owner(self, obj):
+    is_partner = serializers.SerializerMethodField()
+
+    def get_is_partner(self, obj):
         request = self.context['request']
-        return request.user == obj.owner
+        return request.user == obj.account.owner
+
 
     class Meta:
         model = PartnerProfile
-        fields = '__all__'
-        
+        fields = [
+            'created_by', 'created_by_id', 'partner_id', 'age', 'zodiac_sign',
+            'relationship', 'characteristics', 'interests',
+            'location', 'is_partner'
+        ]

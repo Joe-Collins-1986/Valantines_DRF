@@ -10,6 +10,8 @@ class AccountSerializer(serializers.ModelSerializer):
     Get function to set is_owner to true/false
     """
     owner = serializers.ReadOnlyField(source='owner.username')
+    bio = serializers.ReadOnlyField()
+
     is_owner = serializers.SerializerMethodField()
 
     def get_is_owner(self, obj):
