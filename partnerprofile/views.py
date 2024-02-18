@@ -1,10 +1,10 @@
 from rest_framework import generics
-from main.permissions import IsOwnerOrReadOnly, IsAccountOrReadOnly
+from main.permissions import IsAccountOrReadOnly
 from .models import PartnerProfile
 from .serializers import PartnerProfileSerializer
 
 
-class PartnerProfileList(generics.ListAPIView):
+class PartnerProfileList(generics.ListCreateAPIView):
     """
     - List out all the accounts
     - Account created by user registration so no create

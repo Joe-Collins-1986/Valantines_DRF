@@ -11,6 +11,7 @@ class AccountSerializer(serializers.ModelSerializer):
     """
     owner = serializers.ReadOnlyField(source='owner.username')
     bio = serializers.ReadOnlyField()
+    partner_id = serializers.IntegerField(source='partner_profile.id', read_only=True)
 
     is_owner = serializers.SerializerMethodField()
 
@@ -23,5 +24,5 @@ class AccountSerializer(serializers.ModelSerializer):
         fields = [
             'id', 'owner', 'created_at',
             'account_name', 'bio', 'image',
-            'is_owner'
+            'is_owner', 'partner_id'
         ]

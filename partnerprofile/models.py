@@ -10,7 +10,7 @@ class PartnerProfile(models.Model):
     """
     PartnerProfile Model:
     """
-    account = models.OneToOneField(Account, on_delete=models.CASCADE)
+    account = models.OneToOneField(Account, on_delete=models.CASCADE, related_name='partner_profile')
     name = models.CharField(max_length=50, blank=True)
     age = models.CharField(max_length=50, blank=True)
     zodiac_sign = models.CharField(max_length=50, choices=ZODIAC, blank=True)
