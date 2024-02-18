@@ -16,4 +16,5 @@ urlpatterns = [
     ),
 
     path('accounts/', include('accounts.urls')),
+    path('partnerprofile/', include('partnerprofile.urls')),
 ]

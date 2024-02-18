@@ -10,7 +10,7 @@ class PartnerProfile(models.Model):
     """
     PartnerProfile Model:
     """
-    account = models.OneToOneField(Account, on_delete=models.CASCADE)
+    owner = models.OneToOneField(Account, on_delete=models.CASCADE)
     name = models.CharField(max_length=50)
     birthday = models.DateField()
     zodiac_sign = models.CharField(max_length=50, choices=ZODIAC)
@@ -24,6 +24,4 @@ class PartnerProfile(models.Model):
         ordering = ['-created_at']
 
     def __str__(self):
-        return f"{self.account}'s account"
-
-
+        return f"{self.account} partner's account"
